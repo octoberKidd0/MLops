@@ -1,0 +1,35 @@
+schema: '2.0'
+stages:
+  split_data:
+    cmd: python src/data_split.py
+    deps:
+    - path: data/raw/images
+      hash: md5
+      md5: 73df3d3d6e5d9471f37e77d91750b179.dir
+      size: 248117942
+      nfiles: 535
+    - path: data/raw/labels
+      hash: md5
+      md5: 23f5402abcb03dcffb506e616bb2a34a.dir
+      size: 41926
+      nfiles: 535
+    - path: src/data_split.py
+      hash: md5
+      md5: 4d021578f686f5c677e408f940375bbb
+      size: 2245
+    outs:
+    - path: data/processed/test
+      hash: md5
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
+    - path: data/processed/train
+      hash: md5
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0
+    - path: data/processed/val
+      hash: md5
+      md5: d751713988987e9331980363e24189ce.dir
+      size: 0
+      nfiles: 0

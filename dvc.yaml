@@ -3,12 +3,13 @@ stages:
     cmd: python src/data_split.py
     deps:
       - src/data_split.py
-      - data/raw/
-      - params.yaml
+      - data/raw/images
+      - data/raw/labels
     outs:
-      - data/train/
-      - data/val/
-      - data/test/
+      - data/processed/train
+      - data/processed/val
+      - data/processed/test
+
 
   train:
     cmd: python src/train.py
