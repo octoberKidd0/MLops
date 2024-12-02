@@ -12,7 +12,7 @@ train:
   img_size: 640
   batch_size: 8
   fine_tune_args:
-    epochs: 10
+    epochs: 3
     base_lr: 0.01
 
 evaluate:
