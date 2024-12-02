@@ -15,21 +15,21 @@ stages:
       nfiles: 535
     - path: src/data_split.py
       hash: md5
-      md5: 4d021578f686f5c677e408f940375bbb
-      size: 2245
+      md5: 287089ee5842c40b243a417db42eaeee
+      size: 2291
     outs:
     - path: data/processed/test
       hash: md5
-      md5: d751713988987e9331980363e24189ce.dir
-      size: 0
-      nfiles: 0
+      md5: 2f6a907af89b0d0329b7e9d188e88eb3.dir
+      size: 23896938
+      nfiles: 106
     - path: data/processed/train
       hash: md5
-      md5: d751713988987e9331980363e24189ce.dir
-      size: 0
-      nfiles: 0
+      md5: fc94ee0394866f843c1e5d36cef896fa.dir
+      size: 201173829
+      nfiles: 858
     - path: data/processed/val
       hash: md5
-      md5: d751713988987e9331980363e24189ce.dir
-      size: 0
-      nfiles: 0
+      md5: e69c85265119629eeb5cc2c08b4bcc96.dir
+      size: 23089101
+      nfiles: 106

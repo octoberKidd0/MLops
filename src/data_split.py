@@ -7,9 +7,9 @@ import yaml
 def split_data_with_labels(data_dir, params):
     random.seed(params["base"]["random_seed"])
 
-    # Define image and label directories
-    image_dir = Path(data_dir) / "images"
-    label_dir = Path(data_dir) / "labels"
+    # Define image and label directories (adjusting paths to 'data/raw/')
+    image_dir = Path(data_dir) / "raw" / "images"
+    label_dir = Path(data_dir) / "raw" / "labels"
 
     # List all image files 
     all_images = list(image_dir.glob("*.jpg"))
@@ -33,25 +33,25 @@ def split_data_with_labels(data_dir, params):
     valid_data = all_data[test_size:test_size+valid_size]
     train_data = all_data[test_size+valid_size:]
 
-    # Create directories for the splits in the 'processed' directory
+    # Create directories for the splits under 'data/processed'
     for split in ["train", "val", "test"]:
         (Path(data_dir) / "processed" / split / "images").mkdir(parents=True, exist_ok=True)
         (Path(data_dir) / "processed" / split / "labels").mkdir(parents=True, exist_ok=True)
 
-    # Move images and labels to the respective directories under 'processed'
+    # Copy images and labels to the respective directories under 'data/processed'
     for img, label in train_data:
-        shutil.move(img, Path(data_dir) / "processed" / "train" / "images" / img.name)
-        shutil.move(label, Path(data_dir) / "processed" / "train" / "labels" / label.name)
+        shutil.copy(img, Path(data_dir) / "processed" / "train" / "images" / img.name)
+        shutil.copy(label, Path(data_dir) / "processed" / "train" / "labels" / label.name)
     for img, label in valid_data:
-        shutil.move(img, Path(data_dir) / "processed" / "val" / "images" / img.name)
-        shutil.move(label, Path(data_dir) / "processed" / "val" / "labels" / label.name)
+        shutil.copy(img, Path(data_dir) / "processed" / "val" / "images" / img.name)
+        shutil.copy(label, Path(data_dir) / "processed" / "val" / "labels" / label.name)
     for img, label in test_data:
-        shutil.move(img, Path(data_dir) / "processed" / "test" / "images" / img.name)
-        shutil.move(label, Path(data_dir) / "processed" / "test" / "labels" / label.name)
+        shutil.copy(img, Path(data_dir) / "processed" / "test" / "images" / img.name)
+        shutil.copy(label, Path(data_dir) / "processed" / "test" / "labels" / label.name)
 
     print("Data and labels split completed.")
 
 if __name__ == "__main__":
     with open("params.yaml") as f:
         params = yaml.safe_load(f)
-    split_data_with_labels("data", params)  
+    split_data_with_labels("data", params)
