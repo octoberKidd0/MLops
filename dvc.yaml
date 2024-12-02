@@ -1,31 +1,30 @@
 stages:
-  data_split:
+  split_data:
     cmd: python src/data_split.py
     deps:
-    - data/pool_data
-    - src/data_split.py
-    params:
-    - base
-    - data_split
+      - src/data_split.py
+      - data/raw/
+      - params.yaml
     outs:
-    - data/test_data
-    - data/train_data
+      - data/train/
+      - data/val/
+      - data/test/
+
   train:
     cmd: python src/train.py
     deps:
-    - data/train_data
-    - src/train.py
-    params:
-    - base
-    - train
+      - src/train.py
+      - data/train/
+      - data/val/
+      - params.yaml
     outs:
-    - models/model.pkl
+      - runs/train/weights/best.pt
+
   evaluate:
-    cmd: python src/evaluate.py
+    cmd: python src/eval.py
     deps:
-    - data/test_data
-    - models/model.pkl
-    - src/evaluate.py
-    params:
-    - base
-    - evaluate
+      - src/eval.py
+      - runs/train/weights/best.pt
+      - params.yaml
+    outs:
+      - runs/predictions/
