@@ -1,4 +1,4 @@
-path: './processed'
+path: 'C:\Users\Виктория\Desktop\MLops\MLops\data\processed'
 train: 'train/images'     
 val: 'valid/images'  
 
